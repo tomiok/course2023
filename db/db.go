@@ -6,12 +6,16 @@ import (
 	"gorm.io/gorm"
 )
 
-func CreateDB() (*gorm.DB, error) {
+type MoviesDB struct {
+	DB *gorm.DB
+}
+
+func CreateDB() (*MoviesDB, error) {
 	db, err := gorm.Open(sqlite.Open("test.db"), &gorm.Config{})
 	if err != nil {
 		// built-in function panic()
 		return nil, err
 	}
 
-	return db, nil
+	return &MoviesDB{DB: db}, nil
 }
