@@ -1,7 +1,12 @@
 package movie
 
+import (
+	"fmt"
+	"gorm.io/gorm"
+)
+
 type Movie struct {
-	ID       string `json:"id"`
+	gorm.Model
 	Title    string `json:"title"`
 	Genre    string `json:"genre"`
 	Director string `json:"director"`
@@ -10,13 +15,13 @@ type Movie struct {
 }
 
 type Actor struct {
-	ID        string `json:"id"`
+	gorm.Model
 	FirstName string `json:"first_name"`
 	LastName  string `json:"last_name"`
 }
 
 func (m Movie) String() string {
-	return "this is a movie"
+	return fmt.Sprintf("Title: %s - Genre: %s - Director: %s", m.Title, m.Genre, m.Director)
 }
 
 type Storage interface {

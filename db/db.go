@@ -2,6 +2,8 @@
 package db
 
 import (
+	"github.com/rs/zerolog/log"
+	"github.com/tomiok/course-23/internal/movie"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
 )
@@ -17,5 +19,11 @@ func CreateDB() (*MoviesDB, error) {
 		return nil, err
 	}
 
+	migrate(db)
 	return &MoviesDB{DB: db}, nil
+}
+
+func migrate(db *gorm.DB) {
+	log.Error().Msgf("%s", db.AutoMigrate(&movie.Movie{}))
+	log.Error().Msgf("%s", db.AutoMigrate(&movie.Actor{}))
 }

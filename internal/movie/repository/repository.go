@@ -1,7 +1,7 @@
 package repository
 
 import (
-	"fmt"
+	"github.com/rs/zerolog/log"
 	"github.com/tomiok/course-23/db"
 	"github.com/tomiok/course-23/internal/movie"
 )
@@ -17,7 +17,12 @@ func NewRepo(db *db.MoviesDB) Repository {
 }
 
 func (r Repository) CreateMovie(m movie.Movie) (movie.Movie, error) {
-	fmt.Println(m)
-	fmt.Println("Movie is saved")
-	return movie.Movie{}, nil
+	err := r.db.DB.Create(&m).Error
+
+	if err != nil {
+		return movie.Movie{}, err
+	}
+
+	log.Info().Msgf("movie %s saved OK to the DB", m.Title)
+	return m, nil
 }
