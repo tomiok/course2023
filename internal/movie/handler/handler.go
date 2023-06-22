@@ -11,6 +11,12 @@ type Handler struct {
 	*movie.Service
 }
 
+func NewHandler(s *movie.Service) *Handler {
+	return &Handler{
+		s,
+	}
+}
+
 func (h *Handler) CreateMovieHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	// 1st I need to get the body.

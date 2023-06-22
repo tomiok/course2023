@@ -16,6 +16,9 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 
+	deps := newDeps()
+	r.Post("/movies", deps.movieHandler.CreateMovieHandler)
+
 	log.Info().Msgf("web app is running in port %s", port)
 	http.ListenAndServe(port, r)
 }

@@ -27,6 +27,12 @@ type Service struct {
 	Storage Storage
 }
 
+func NewService(storage Storage) *Service {
+	return &Service{
+		Storage: storage,
+	}
+}
+
 func (s *Service) Create(m Movie) (Movie, error) {
 	movie, err := s.Storage.CreateMovie(m)
 
