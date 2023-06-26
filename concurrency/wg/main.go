@@ -5,6 +5,8 @@ import (
 	"sync"
 )
 
+// channels
+
 func main() {
 	var wg = sync.WaitGroup{}
 	for i := 0; i < 10; i++ {
