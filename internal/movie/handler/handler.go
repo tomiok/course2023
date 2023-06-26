@@ -13,7 +13,7 @@ type Handler struct {
 
 func NewHandler(s *movie.Service) *Handler {
 	return &Handler{
-		s,
+		Service: s,
 	}
 }
 

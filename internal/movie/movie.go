@@ -11,6 +11,8 @@ type Movie struct {
 	Genre    string `json:"genre"`
 	Director string `json:"director"`
 
+	Year int
+
 	Cast []Actor `gorm:"many2many:movie_cast;" json:"cast,omitempty"` //MANY TO MANY RELATIONSHIP
 }
 
