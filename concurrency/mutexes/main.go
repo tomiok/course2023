@@ -11,7 +11,6 @@ type Container struct {
 }
 
 func (c *Container) inc(name string) {
-
 	c.mu.Lock()
 	defer c.mu.Unlock()
 	c.counters[name]++
