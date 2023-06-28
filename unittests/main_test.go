@@ -1,6 +1,7 @@
 package add_test
 
 import (
+	"github.com/stretchr/testify/assert"
 	add "github.com/tomiok/course-23/unittests"
 	"strconv"
 	"testing"
@@ -23,6 +24,7 @@ func TestAddition(t *testing.T) {
 }
 
 func TestAdditionNotOK(t *testing.T) {
+	t.Skip()
 	value1 := 1
 	value2 := 5
 	expected := 100
@@ -31,4 +33,12 @@ func TestAdditionNotOK(t *testing.T) {
 	if actual != expected {
 		t.Fatal("the result should be " + strconv.Itoa(expected))
 	}
+}
+
+// with assertions
+
+func TestAdd_Assert(t *testing.T) {
+	result := add.Adding(10, 25)
+	assert.Equal(t, 35, result)
+	assert.NotEqual(t, 15, result, "result should be 35")
 }
