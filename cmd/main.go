@@ -15,6 +15,7 @@ func main() {
 
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
+	r.Use(middleware.RequestID)
 
 	deps := newDeps()
 	r.Post("/movies", deps.movieHandler.CreateMovieHandler)

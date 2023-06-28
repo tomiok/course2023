@@ -44,6 +44,8 @@ func (s *Service) Create(m Movie) (Movie, error) {
 	movie, err := s.Storage.CreateMovie(m)
 
 	if err != nil {
+		// ctx.Value("RequestID")
+		// do a proper logging with the requestID
 		return Movie{}, err
 	}
 

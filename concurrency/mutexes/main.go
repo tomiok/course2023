@@ -18,7 +18,6 @@ func (c *Container) inc(name string) {
 
 func main() {
 	c := Container{
-
 		counters: map[string]int{"a": 0, "b": 0},
 	}
 
