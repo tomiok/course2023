@@ -3,6 +3,7 @@ package main
 import (
 	"context"
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -23,4 +24,28 @@ func main() {
 
 func NewValueInCtx(ctx context.Context, key, value string) context.Context {
 	return context.WithValue(ctx, key, value)
+}
+
+func Cancellation() {
+	ctx, fn := context.WithCancel(context.Background())
+	defer fn()
+
+	select {
+	case <-ctx.Done():
+	// finish the program
+	default:
+		fmt.Println("still working")
+	}
+}
+
+func Timeout() {
+	ctx, fn := context.WithTimeout(context.Background(), 5*time.Minute)
+	defer fn()
+
+	select {
+	case <-ctx.Done():
+	// finish the program
+	default:
+		fmt.Println("still working")
+	}
 }
