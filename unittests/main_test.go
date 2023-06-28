@@ -42,3 +42,24 @@ func TestAdd_Assert(t *testing.T) {
 	assert.Equal(t, 35, result)
 	assert.NotEqual(t, 15, result, "result should be 35")
 }
+
+// write mocks
+// Mocking is a process used in unit testing when the unit being tested has external dependencies.
+// Mock always works with interfaces.
+
+// MockMultiplier should return a hardcoded 10 as a result.
+type MockMultiplier struct{}
+
+func (m *MockMultiplier) Multiply(a, b int) int {
+	return 10
+}
+
+func TestFoo(t *testing.T) {
+	s := add.Service{
+		M: &MockMultiplier{},
+	}
+
+	result := s.Foo(2, 8)
+
+	assert.Equal(t, 20, result, "with this mock, returns 20")
+}
